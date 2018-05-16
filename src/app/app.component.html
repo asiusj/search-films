@@ -5,11 +5,14 @@
     </mat-toolbar-row>
   </mat-toolbar>
   <nav mat-tab-nav-bar>
-      <a mat-tab-link routerLink="search" routerLinkActive #rla="routerLinkActive"
-      [active]="rla.isActive">SearchFilms</a>
-      <a mat-tab-link routerLink="stored" routerLinkActive #rla="routerLinkActive"
-      [active]="rla.isActive">StoredFilms</a>
-  </nav>
+      <a mat-tab-link
+         *ngFor="let link of navLinks"
+         [routerLink]="link.path"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">
+        {{link.label}}
+      </a>
+    </nav>
   <router-outlet></router-outlet>
 
 

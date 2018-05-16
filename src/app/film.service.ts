@@ -72,6 +72,7 @@ export class FilmService {
         s.splice(i, 1);
       }
     });
+
     localStorage.setItem('storedFilms', JSON.stringify(s));
     this.storedFilms = this.getStoredFilmsObs();
     return this.storedFilms;
