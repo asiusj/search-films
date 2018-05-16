@@ -1,0 +1,19 @@
+a, a:hover, a:visited {
+  color: #333;
+  text-decoration: underline;
+}
+
+.film-item {
+  padding:0.2em 2em;
+  width: 90%;
+}
+
+.film-item img{
+  width: auto;
+  height: 300px;
+  cursor: pointer;
+
+}
+.mat-card-title{
+ font-size: 24px;
+}

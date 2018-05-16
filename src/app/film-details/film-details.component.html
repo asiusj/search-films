@@ -1,0 +1,24 @@
+<a mat-raised-button routerLink="/search">Back to Search</a>
+
+<mat-card>
+
+  <mat-grid-list cols="3" rowHeight="300px">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <div>
+
+        <img class="detail-poster" src="{{film.Poster}}" alt="poster_{{film.id}}">
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1" class="description">
+      <div>
+        <div class="mat-card-title">{{film.Title}}</div>
+        <mat-card-subtitle>ImDB Rating: {{film.Rating}}</mat-card-subtitle>
+        <div>Description: {{film.Plot}}</div>
+        <div>Release Date: {{film.Year}}</div>
+        <div>Director: {{film.Director}}</div>
+        <div>Actors: {{film.Actors}}</div>
+        <div>Runtime: {{film.Runtime}}</div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
