@@ -1,0 +1,27 @@
+<mat-grid-list cols="3" [rowHeight]="250">
+    <mat-grid-tile *ngFor="let film of films" [colspan]="1" [rowspan]="2">
+      <mat-card class="film-item">
+        <mat-card-header>
+
+          <mat-card-title>
+            <a routerLink="/details/{{film.id}}">{{film.Title}}</a>
+          </mat-card-title>
+
+          <mat-card-subtitle>{{film.Year}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <p style="text-align: center">
+          <img routerLink="/details/{{film.id}}" mat-card-image src="{{film.Poster}}" alt="poster_{{film.id}}" />
+
+        </p>
+
+        <mat-card-actions>
+          <button *ngIf="!film.Saved" mat-button (click)="saveFilm(film)">SAVE</button>
+          <button *ngIf="film.Saved" mat-button (click)="deleteFilm(film)">DELETE</button>
+        </mat-card-actions>
+
+
+
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>

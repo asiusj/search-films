@@ -15,7 +15,6 @@ export class FilmsComponent implements OnInit {
   FilmsForm: FormGroup = this.fb.group({
     FilmItems: '',
   });
-  storedFilms: Film[] = [];
   films: Film[] = [];
   str = new Subject<string>();
   searchString = '';
@@ -30,59 +29,7 @@ export class FilmsComponent implements OnInit {
     }
 
   }
-
-  getIds() {
-
-    // tslint:disable-next-line:prefer-const
-    let a = [];
-    this.storedFilms.map(function (e) {
-      a.push(e.id);
-    });
-    return a;
-  }
-
-  checkStored(founded: Film[]) {
-    this.getIds().map(function (e, i) {
-      founded.map(function (f) {
-        if (f.id === e) {
-          f.Saved = true;
-          f.StorageId = i;
-
-        }
-      });
-    });
-    this.films = founded;
-
-  }
-
-  saveFilm(f: Film) {
-    f.StorageId = this.storedFilms.length;
-    this.fs.addFilmToLocalStorage(f);
-  }
-
-  deleteFilm(f: Film) {
-    this.fs.removeFilmFromLocalStorage(f.StorageId);
-    f.Saved = false;
-    f.StorageId = null;
-  }
-
   ngOnInit() {
-
-    this.fs.searchStr(this.str).subscribe(_ => {
-
-      if (_['Search']) {
-        // tslint:disable-next-line:prefer-const
-        let res = [];
-        _['Search'].map(function (f) {
-          res.push(new Film(f['Title'], f['imdbID'], null, f['Year'], f['Poster']));
-
-        });
-        this.films = res;
-        this.checkStored(this.films);
-      }
-
-    });
-    this.storedFilms = this.fs.getStoredFilms();
 
   }
 

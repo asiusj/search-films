@@ -4,7 +4,12 @@
       <h2>{{title}}</h2>
     </mat-toolbar-row>
   </mat-toolbar>
-  <mat-divider></mat-divider>
+  <nav mat-tab-nav-bar>
+      <a mat-tab-link routerLink="search" routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">SearchFilms</a>
+      <a mat-tab-link routerLink="stored" routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">StoredFilms</a>
+  </nav>
   <router-outlet></router-outlet>
 
 
