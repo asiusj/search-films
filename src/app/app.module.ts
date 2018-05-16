@@ -8,12 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { HttpClientModule } from '@angular/common/http';
 import { FilmsComponent } from './films/films.component';
-import { FilmSearchService } from './film-search.service';
+import { FilmService } from './film.service';
 import { RoutingModule } from './routing.module';
 import { FilmDetailsComponent } from './film-details/film-details.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { StoredFilmsComponent } from './stored-films/stored-films.component';
 
 
 
@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     FilmsComponent,
     FilmDetailsComponent,
+    StoredFilmsComponent
 
   ],
   imports: [
@@ -40,7 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [FilmSearchService],
+  providers: [FilmService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@ import { debounceTime, distinctUntilChanged, switchMap, debounce, catchError, ta
 @Injectable({
   providedIn: 'root'
 })
-export class FilmSearchService {
+export class FilmService {
 
 
   private log(message: string) {
@@ -31,4 +31,25 @@ export class FilmSearchService {
     return this.http.get<Film>(environment.apiUrl + '?i=' + id + '&apikey=e290de4d&r=json&v=2');
   }
 
+  getStoredFilms() {
+    // tslint:disable-next-line:prefer-const
+    let s = JSON.parse(localStorage.getItem('storedFilms'));
+    return s == null ? [] : s;
+  }
+
+  addFilmToLocalStorage(f: Film) {
+    let s = [];
+    s = this.getStoredFilms();
+    f.Saved = true;
+    s.push(f);
+
+    localStorage.setItem('storedFilms', JSON.stringify(s));
+  }
+
+  removeFilmFromLocalStorage(id: number) {
+    // tslint:disable-next-line:prefer-const
+    let s = this.getStoredFilms();
+    s.splice(id, 1);
+    localStorage.setItem('storedFilms', JSON.stringify(s));
+  }
 }

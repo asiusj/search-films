@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Film } from '../film.model';
-import { FilmSearchService } from '../film-search.service';
+import { FilmService } from '../film.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -15,10 +15,11 @@ export class FilmsComponent implements OnInit {
   FilmsForm: FormGroup = this.fb.group({
     FilmItems: '',
   });
+  storedFilms: Film[] = [];
   films: Film[] = [];
   str = new Subject<string>();
   searchString = '';
-  constructor(private fs: FilmSearchService, private fb: FormBuilder) {
+  constructor(private fs: FilmService, private fb: FormBuilder) {
 
   }
 
@@ -30,6 +31,40 @@ export class FilmsComponent implements OnInit {
 
   }
 
+  getIds() {
+
+    // tslint:disable-next-line:prefer-const
+    let a = [];
+    this.storedFilms.map(function (e) {
+      a.push(e.id);
+    });
+    return a;
+  }
+
+  checkStored(founded: Film[]) {
+    this.getIds().map(function (e, i) {
+      founded.map(function (f) {
+        if (f.id === e) {
+          f.Saved = true;
+          f.StorageId = i;
+
+        }
+      });
+    });
+    this.films = founded;
+
+  }
+
+  saveFilm(f: Film) {
+    f.StorageId = this.storedFilms.length;
+    this.fs.addFilmToLocalStorage(f);
+  }
+
+  deleteFilm(f: Film) {
+    this.fs.removeFilmFromLocalStorage(f.StorageId);
+    f.Saved = false;
+    f.StorageId = null;
+  }
 
   ngOnInit() {
 
@@ -43,9 +78,12 @@ export class FilmsComponent implements OnInit {
 
         });
         this.films = res;
+        this.checkStored(this.films);
       }
 
     });
+    this.storedFilms = this.fs.getStoredFilms();
+
   }
 
 }

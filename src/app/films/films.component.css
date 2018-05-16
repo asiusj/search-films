@@ -4,8 +4,8 @@ a, a:hover, a:visited {
 }
 
 .film-item {
-  padding:0.2em 2em;
-  width: 90%;
+  padding:2em;
+  width: 80%;
 }
 
 .film-item img{
@@ -16,4 +16,6 @@ a, a:hover, a:visited {
 }
 .mat-card-title{
  font-size: 24px;
+}
+.add-button {
 }

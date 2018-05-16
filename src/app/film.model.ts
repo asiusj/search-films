@@ -9,6 +9,8 @@ export class Film {
   Actors?: string;
   Runtime?: string;
   Rating?: string;
+  Saved = false;
+  StorageId?: number;
 
   constructor (t?, id?, p?, y?, i?, ty?, d?, a?, r?, rating?) {
     this.Title = t;
